@@ -6,3 +6,16 @@
 
 ![stock_balance](https://user-images.githubusercontent.com/69666784/94119733-47193e00-fe8a-11ea-94f2-4fbcb171beeb.PNG)
 ***
+### django 환경설정
+1. 장고 웹 프레임 워크 설치
+> pip install django
+
+2. 서버 구동
+> python manage.py runserver
+
+3. (구동 취소 > ctrl + c)
+
+4. http://127.0.0.1:8000/balance/ 로 접속
+
+5. url : http://127.0.0.1:8000/balance/?{종목코드}={보유주식 수량}&{종목코드}={보유주식 수량} ...
+***
