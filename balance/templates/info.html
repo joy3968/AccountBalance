@@ -1,0 +1,69 @@
+{% load static %}
+
+<html>
+<head>
+
+    <!-- 계좌 잔고 표시 -->
+    <title>Balance: {{ total }}</title>
+    <link rel="stylesheet" href="{% static 'balance/b_style.css' %}"/>
+</head>
+<script type="text/javascript">
+<!--    function getElement()-->
+<!--    {-->
+<!--        var aa = document.getElementById("stock_code").value;-->
+<!--        document.getElementById("quantity").setAttribute("name", aa);-->
+<!--    }-->
+</script>
+
+
+
+<body>
+<form method="get" action="balance">
+    <table>
+
+        <tr>
+            <th colspan="3"> 자산 정보 입력</th>
+        </tr>
+        <tr>
+            <th>자산 선택</th>
+            <td colspan="2">
+                <input type="radio" name="asset" value="stock" /> 주식
+                <input type="radio" name="asset" value="coin" /> 코인
+            </td>
+        </tr>
+        <tr>
+            <th>주식(코인)코드</th>
+            <td colspan="2">
+                <input type="text" name="stock_code">
+            </td>
+
+        </tr>
+        <tr>
+            <th>주식(코인)수</th>
+            <td colspan="2">
+                <input type="text" name="quantity" id="quantity">
+            </td>
+
+        </tr>
+        <tr>
+            <th>매입가</th>
+            <td colspan="2">
+                <input type="text" name="first_price">
+            </td>
+        </tr>
+        <tr>
+            <th colspan="3">
+
+                <input type="submit" value="등록">
+
+            </th>
+        </tr>
+        <script>
+
+        </script>
+
+    </table>
+</form>
+</body>
+
+</html>
