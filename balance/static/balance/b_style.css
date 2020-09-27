@@ -28,7 +28,8 @@ table th {
 /* 테이블 데이터의 텍스트 정렬 방식을 지정 */
 table td:nth-child(1){text-align: left;}
 table td:nth-child(2){text-align: center;}
-table td:nth-child(3){text-align: right;}
-table td:nth-child(4){text-align: right;}
-table td:nth-child(5){text-align: right;}
-table td:nth-child(6){text-align: right;}
+table td:nth-child(3){text-align: center;}
+table td:nth-child(4){text-align: center;}
+table td:nth-child(5){text-align: center;}
+table td:nth-child(6){text-align: center;}
+table td:nth-child(7){text-align: center;}

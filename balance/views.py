@@ -29,11 +29,61 @@ def main_view(request):
                      stock_sum]) # 종목명, 종목코드, 현재가, 주식수, 등락률, 평가금액을 추가
         total = total + int(price) * int(x[1][0]) # 평가금액 * 주식수
 
+    # 천 단위로 ',' 를 표시
     total_amount = format(total, ',')
-    values = {'rows' : rows, 'total' : total_amount, 'request' : request} # balance.html 에 전달할 값 저장
+    values = {'rows' : rows, 'total' : total_amount, 'request' : request, 'mylist':mylist, 'querydict':querydict} # balance.html 에 전달할 값 저장
 
     # # balance.html에 values를 넘겨줌.
     return render(request, 'balance.html', values) # balance.html을 표시하도록 값을 전달
+#
+def main_info(request):
+    querydict = request.GET.copy()
+    mylist = querydict.lists()
+    rows = []
+    total = 0
+
+    values = {'rows': rows, 'code': '005930'}  # balance.html 에 전달할 값 저장
+
+    # # balance.html에 values를 넘겨줌.
+    return render(request, 'info.html', values)
+
+# 주식명, 보유 수 등을 받음
+def main_view2(request):
+    querydict = request.GET.copy()
+    asset_info = list(querydict.values())
+
+
+    asset = asset_info[0]
+    stock_code = asset_info[1]
+    quantity = asset_info[2]
+    first_price = asset_info[3]
+    # 타입을 정수형을 바꾸어 준 후 천 단위마다 쉼표를 표시
+    first_price = int(first_price)
+    # 주식코드를 입력하면 (현재가, 등락률, 주식명)을 가져온다.
+    cur_price, cur_rate, stock_name = get_data(stock_code)
+    # ','를 없애준다 -> 자료형을 정수형으로 변환시키기 위해
+    cur_price = cur_price.replace(',', '')
+    # 자료형을 정수형으로 변환(매입가와 현재가의 계산을 위해-> 등락률)
+    cur_price = int(cur_price)
+    # 등락률 계산
+    revenue = (cur_price - first_price) / first_price * 100
+    revenue = round(revenue, 2)
+
+    asset_sum = cur_price * int(quantity)
+
+    # 천단위 쉼표 표시하기
+    cur_price = format(cur_price, ',')
+    first_price = format(first_price, ',')
+    asset_sum = format(asset_sum, ',')
+
+    values = {'asset' : asset, 'stock_code':stock_code, 'quantity':quantity,
+              'cur_price': cur_price, 'first_price':first_price, 'revenue' : revenue, 'asset_sum':asset_sum}
+
+
+    return render(request, 'balance.html', values)
+
+def info(request):
+    return render(request, 'index.html')
 
 
 # Create your views here.

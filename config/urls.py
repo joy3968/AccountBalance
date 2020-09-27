@@ -20,5 +20,8 @@ from balance import views as balance_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # URL 이 balance인 경우 애플리케이션 뷰의 main_view() 함수로 매핑된다.
-    path('balance/', balance_views.main_view)
+    path('info/balance/', balance_views.main_view2),
+    path('info/', balance_views.main_info),
+    path('', balance_views.info)
+    # path()
 ]
