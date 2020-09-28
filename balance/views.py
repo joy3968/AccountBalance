@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
@@ -83,7 +83,34 @@ def main_view2(request):
     return render(request, 'balance.html', values)
 
 def info(request):
+
     return render(request, 'index.html')
+
+
+# 로그인 페이지로 이동
+def login(request):
+
+    return render(request, 'login.html')
+
+def sign_in(request):
+    return render(request, 'sign.html')
+
+def insert_info(request):
+    querydict = request.POST.copy()
+    member_info = list(querydict.values())
+
+    id = member_info[0]
+    pw = member_info[1]
+
+    # 디비 연동
+    from django.db import connection, transaction
+
+    cursor = connection.cursor()
+
+    sql = "insert into balance_user(user_id, password) values('{}', '{}')".format(id,pw)
+    cursor.execute(sql)
+    transaction.commit_unless_managed()
+    return redirect('../../../')
 
 
 # Create your views here.

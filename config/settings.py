@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import pymysql
+pymysql.version_info = (1, 4, 0, "final", 0)
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'accountbalance',
+        'USER': 'accountbalance',
+        'PASSWORD' : '1234',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
     }
 }
 
@@ -123,6 +130,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_DIR =  [BASE_DIR / 'static']
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [BASE_DIR / 'static']
+#
+# MEDIA_URL = '/'
+# MEDIA_ROOT = BASE_DIR / ''
 
 
 # STATIC_ROOT = os.path.join(ROOT_DIR, 'static')

@@ -22,6 +22,9 @@ urlpatterns = [
     # URL 이 balance인 경우 애플리케이션 뷰의 main_view() 함수로 매핑된다.
     path('info/balance/', balance_views.main_view2),
     path('info/', balance_views.main_info),
-    path('', balance_views.info)
+    path('', balance_views.info),
+    path('login/', balance_views.login),
+    path('login/sign/', balance_views.sign_in),
+    path('login/sign/aa/', balance_views.insert_info)
     # path()
 ]
